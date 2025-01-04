@@ -1,0 +1,34 @@
+.weather-widget {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.weather-widget .weather-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+    transition: transform 0.5s ease;
+}
+
+.weather-widget.sunny {
+    background-color: #ffeb3b;
+}
+
+.weather-widget.rainy {
+    background-color: #2196f3;
+}
+
+.weather-widget.cloudy {
+    background-color: #9e9e9e;
+}
+
+.weather-info {
+    font-size: 16px;
+    color: #555;
+}
