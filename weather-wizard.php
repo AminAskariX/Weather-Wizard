@@ -3,7 +3,7 @@
 Plugin Name: Weather Wizard
 Description: یک پلاگین وردپرس برای نمایش وضعیت آب‌وهوا با انیمیشن‌های زیبا و شرت‌کد.
 Version: 1.0
-Copyright: (c) 2025 M. Amin Askari
+Copyright: (c) M. Amin Askari
 Author: M. Amin Askari
 */
 
