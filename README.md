@@ -5,81 +5,55 @@
 <a id="فارسی"></a>
 ## 🇮🇷 فارسی
 
-افزونهٔ وردپرس برای نمایش دما و وضعیت آب‌وهوا با شورت‌کد.
+افزونهٔ وردپرس برای نمایش آب‌وهوای شهر انتخابی در نوشته یا برگه. درخواست OpenWeatherMap از سرور وردپرس ارسال می‌شود و کلید API به مرورگر فرستاده نمی‌شود.
 
 ### 🚀 امکانات
 
-- شورت‌کد `[weather_wizard city="Tehran"]` با شهر پیش‌فرض تهران.
-- دریافت داده از OpenWeatherMap و نمایش دما و وضعیت به کمک jQuery و CSS.
-- نمایش نماد ساده برای وضعیت آفتابی، بارانی یا سایر وضعیت‌ها.
+- شورت‌کد `[weather_wizard city="Tehran"]`؛ شهر پیش‌فرض تهران است.
+- صفحهٔ تنظیمات در «تنظیمات ← Weather Wizard» برای ثبت کلید API.
+- اعتبارسنجی نام شهر، محدودیت درخواست‌های بدون کش و کش ۱۰ دقیقه‌ای هر شهر.
+- نمایش دما، وضعیت و نماد ساده برای هر ویجت؛ خطای API در همان ویجت نشان داده می‌شود.
 
-### 🛠️ نصب و پیکربندی
+### 🛠️ نصب و راه‌اندازی
 
-فایل‌های این مخزن را در یک پوشه زیر `wp-content/plugins/` قرار دهید و افزونهٔ Weather Wizard را در پیشخوان فعال کنید. در `scripts.js` مقدار نمایشی `YOUR_API_KEY` را با کلید معتبر OpenWeatherMap جایگزین کنید، سپس شورت‌کد را در برگه یا نوشته بگذارید.
+فایل‌های مخزن را در پوشهٔ `wp-content/plugins/weather-wizard/` بگذارید و افزونه را فعال کنید. از [OpenWeatherMap](https://openweathermap.org/) کلید معتبر بگیرید و آن را در صفحهٔ تنظیمات افزونه ثبت کنید. سپس شورت‌کد را در نوشته یا برگه قرار دهید.
 
-### ⚠️ محدودیت فعلی
+### 🔒 امنیت و محدودیت
 
-در این نسخه کلید API داخل JavaScript مرورگر استفاده می‌شود و برای بازدیدکنندگان قابل مشاهده است. برای محیط عملیاتی، درخواست را به سمت سرور منتقل و کلید را ایمن نگه دارید.
+کلید فقط در تنظیمات سرور نگه داشته می‌شود. مسیر REST عمومی است چون بازدیدکنندگان باید بتوانند هوا را ببینند؛ کش و محدودیت ۳۰ درخواست جدید در ۱۰ دقیقه برای هر IP مصرف API را کاهش می‌دهد. سرویس خارجی، اتصال اینترنت و کلید معتبر لازم‌اند؛ محدودیت نرخ یا قطعی OpenWeatherMap می‌تواند نتیجه را تحت تأثیر قرار دهد.
 
-### 💡 جایگاه افزونه
+### 👤 پدیدآورنده
 
-وقتی صفحهٔ وردپرس به یک نمایش خلاصه از هوای یک شهر نیاز دارد، شورت‌کد را در محتوا قرار دهید. PHP ظرف ویجت و نام شهر را تولید می‌کند؛ اسکریپت مرورگر درخواست هواشناسی را می‌فرستد و دما و نماد شرایط را در همان ظرف می‌نویسد. اگر درخواست شکست بخورد، متن خطا در ویجت نشان داده می‌شود.
-
-### 🧩 نقشهٔ فایل‌ها
-
-| فایل | نقش |
-| --- | --- |
-| `weather-wizard.php` | ثبت افزونه، بارگذاری فایل‌ها و شورت‌کد |
-| `scripts.js` | درخواست API و درج نتیجه |
-| `styles.css` | ظاهر ویجت |
-
-> 🔎 برای چند ویجت در یک صفحه، اسکریپت هر عنصر `.weather-widget` را جداگانه پردازش می‌کند.
-
-### 👤 پدیدآورنده و حقوق نشر
-
-© م.امین عسکری (M. Amin Askari). [GitHub](https://github.com/AminAskariX) · [وب‌سایت](https://aminaskarix.ir)
+طراحی و برنامه‌نویسی: م. امین عسکری | [AminAskariX.ir](https://aminaskarix.ir)
 
 ### 📜 مجوز
 
-این پروژه تحت مجوز MIT منتشر شده است؛ متن کامل در [LICENSE](LICENSE) آمده است.
+MIT؛ متن کامل در [LICENSE](LICENSE).
 
 <a id="english"></a>
 ## 🇬🇧 English
 
-A WordPress shortcode plugin that displays temperature and weather conditions.
+A WordPress shortcode plugin for displaying a city's weather in a post or page. WordPress requests OpenWeatherMap on the server, so the API key is not sent to visitors' browsers.
 
 ### 🚀 Features
 
 - `[weather_wizard city="Tehran"]` shortcode, defaulting to Tehran.
-- OpenWeatherMap request via jQuery, with temperature and weather styling.
-- Simple icons for clear, rainy, and other conditions.
+- Settings → Weather Wizard page for the API key.
+- City validation, per-IP uncached request limit, and ten-minute per-city cache.
+- Temperature, condition, simple icon, and in-widget errors.
 
 ### 🛠️ Install and configure
 
-Place these files in a folder under `wp-content/plugins/` and activate Weather Wizard in WordPress. Replace the `YOUR_API_KEY` placeholder in `scripts.js` with an OpenWeatherMap key, then add the shortcode to a post or page.
+Place the files under `wp-content/plugins/weather-wizard/`, activate the plugin, obtain a valid [OpenWeatherMap](https://openweathermap.org/) key, and save it in plugin settings. Add the shortcode to a post or page.
 
-### ⚠️ Current limitation
+### 🔒 Security and limitations
 
-This version uses the API key in browser-side JavaScript, where visitors can see it. For production, proxy the request through a server and keep the key private.
+The key stays in server-side settings. The REST route is public so visitors can load weather; caching and a 30-uncached-request-per-10-minute per-IP limit reduce API consumption. The external service, internet access, and valid key are still required.
 
-### 💡 Plugin flow
+### 👤 Author
 
-Add the shortcode when a WordPress page needs a compact weather snapshot for a city. PHP renders a widget container and city name; browser-side JavaScript requests weather data and fills the same container with temperature and an icon. A failed request shows an error in the widget.
-
-### 🧩 Repository map
-
-| File | Purpose |
-| --- | --- |
-| `weather-wizard.php` | Plugin registration, assets, shortcode |
-| `scripts.js` | API request and result rendering |
-| `styles.css` | Widget appearance |
-
-> 🔎 The script processes each `.weather-widget` element independently when several appear on a page.
-
-### 👤 Author and copyright
-
-Copyright © M. Amin Askari (م.امین عسکری). [GitHub](https://github.com/AminAskariX) · [Website](https://aminaskarix.ir)
+Design and development: M. Amin Askari | [AminAskariX.ir](https://aminaskarix.ir)
 
 ### 📜 License
 
-This project is licensed under MIT. See [LICENSE](LICENSE) for the full terms.
+MIT; see [LICENSE](LICENSE).
