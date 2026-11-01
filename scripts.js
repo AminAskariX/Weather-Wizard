@@ -1,33 +1,22 @@
-jQuery(document).ready(function($) {
-    $('.weather-widget').each(function() {
-        const widget = $(this);
-        const city = widget.data('city');
-        
-        // فراخوانی API وضعیت آب‌وهوا
-        $.ajax({
-            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=YOUR_API_KEY`,
-            method: 'GET',
-            success: function(data) {
-                const temp = data.main.temp;
-                const status = data.weather[0].main;
-                
-                widget.find('.temperature').text(`دما: ${temp}°C`);
-                widget.find('.weather-status').text(status);
-                
-                if (status === 'Clear') {
-                    widget.addClass('sunny');
-                    widget.find('.weather-icon').html('☀️');
-                } else if (status === 'Rain') {
-                    widget.addClass('rainy');
-                    widget.find('.weather-icon').html('🌧️');
-                } else {
-                    widget.addClass('cloudy');
-                    widget.find('.weather-icon').html('☁️');
-                }
-            },
-            error: function() {
-                widget.find('.weather-status').text('مشکلی در دریافت اطلاعات پیش آمده.');
-            }
-        });
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.weather-widget').forEach(async widget => {
+    const city = widget.dataset.city;
+    const status = widget.querySelector('.weather-status');
+    const temperature = widget.querySelector('.temperature');
+    const icon = widget.querySelector('.weather-icon');
+    try {
+      const url = new URL(WeatherWizardConfig.endpoint, window.location.href);
+      url.searchParams.set('city', city);
+      const response = await fetch(url.toString(), { credentials: 'same-origin' });
+      const data = await response.json();
+      if (!response.ok) throw Error(data.message || 'دریافت اطلاعات ناموفق بود.');
+      temperature.textContent = 'دما: ' + data.temperature + '°C';
+      status.textContent = data.condition;
+      const kind = data.condition === 'Clear' ? 'sunny' : data.condition === 'Rain' ? 'rainy' : 'cloudy';
+      widget.classList.add(kind);
+      icon.textContent = kind === 'sunny' ? '☀️' : kind === 'rainy' ? '🌧️' : '☁️';
+    } catch (error) {
+      status.textContent = error.message || 'مشکلی در دریافت اطلاعات پیش آمد.';
+    }
+  });
 });
